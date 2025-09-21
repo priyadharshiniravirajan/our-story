@@ -1,85 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unlock Our Story - Ravi ❤️ Priya</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { font-family: 'Georgia', serif; overflow: hidden; }
-
-    .romantic-title { font-family: 'Brush Script MT', cursive; }
-
-    /* Floating hearts */
-    .hearts-container {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .heart {
-      position: absolute;
-      font-size: 1.5rem;
-      animation: floatUp linear infinite;
-      opacity: 0.8;
-    }
-
-    .heart-1 { left: 10%; animation-duration: 6s; }
-    .heart-2 { left: 30%; animation-duration: 8s; animation-delay: 1s; }
-    .heart-3 { left: 50%; animation-duration: 7s; animation-delay: 2s; }
-    .heart-4 { left: 70%; animation-duration: 9s; animation-delay: 1.5s; }
-    .heart-5 { left: 85%; animation-duration: 8s; animation-delay: 0.5s; }
-
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(1); opacity: 0.8; }
-      50% { transform: translateY(50vh) scale(1.2); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravi ❤️ Priya - A Love Beyond Distance & Struggles</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gradient-to-br from-rose-300 via-pink-200 to-red-300 min-h-screen flex items-center justify-center p-6 relative">
+<body class="overflow-x-hidden">
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="romantic-bgm.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Top Navigation (Alternative) -->
+    <nav class="fixed top-4 left-4 z-50">
+        <button id="musicToggle" class="bg-white/20 backdrop-blur-sm rounded-full p-3 text-white hover:bg-white/30 transition-all duration-300">
+            <svg id="musicIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M9 9v6l6-3-6-3z" />
+            </svg>
+        </button>
+    </nav>
 
-  <!-- Floating Hearts -->
-  <div class="hearts-container">
-    <div class="heart heart-1">❤️</div>
-    <div class="heart heart-2">💖</div>
-    <div class="heart heart-3">💕</div>
-    <div class="heart heart-4">💗</div>
-    <div class="heart heart-5">💘</div>
-  </div>
+    <!-- Landing Page -->
+    <section id="landing" class="h-screen relative flex items-center justify-center">
+        <div class="sunrise-bg absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/50"></div>
+        
+        <div class="text-center z-10 px-4" data-aos="fade-up" data-aos-duration="2000">
+            <h6 class="romantic-title text-2xl md:text-2xl mb-6 text-white drop-shadow-md">Click the play at left right top corner to start our story</h6>
+            <h1 class="romantic-title text-4xl md:text-7xl mb-6 text-white drop-shadow-lg">
+                Ravi ❤️ Priya
+            </h1>
+            <p class="text-xl md:text-2xl text-white/90 mb-8 font-serif max-w-2xl mx-auto leading-relaxed">
+                A Love Beyond Distance & Struggles
+            </p>
+            <!-- Cover Image -->
+            <img src="images/cover1.jpg" alt="Our Cover" class="mt-8 mx-auto rounded-xl shadow-2xl" style="width: 30%;margin-bottom: 2%;">
 
-  <div class="text-center bg-white/30 backdrop-blur-md p-8 rounded-2xl shadow-lg max-w-lg relative z-10">
-    <h2 class="romantic-title text-3xl mb-4 text-rose-700">Enter Our Secret</h2>
-    <input id="passwordInput" type="password" placeholder="Enter password"
-           class="w-full p-3 rounded-lg mb-4 border border-rose-300 focus:ring-2 focus:ring-rose-400 outline-none">
-    <button id="submitPassword" class="bg-gradient-to-r from-rose-500 to-pink-500 text-white px-6 py-2 rounded-full hover:scale-105 transition">
-      Unlock 💖
-    </button>
-    <p id="errorMessage" class="text-red-600 mt-3 hidden">Incorrect password. Try again!</p>
-  </div>
+            <button id="startStory" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg">
+                Start Our Story ✨
+            </button>
+        </div>
+        
+        <!-- Floating Hearts -->
+        <div class="hearts-container absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="heart heart-1">❤️</div>
+            <div class="heart heart-2">💕</div>
+            <div class="heart heart-3">💖</div>
+        </div>
+    </section>
+
+    <!-- Chapter 1 - Ravi's Journey -->
+    <section id="chapter1" class="min-h-screen py-20 bg-gradient-to-br from-amber-50 to-orange-100">
+        <div class="container mx-auto px-4">
+            <h2 class="chapter-title text-4xl md:text-5xl text-center mb-16 text-amber-800" data-aos="fade-down">
+                Chapter 1: Ravi's Journey
+            </h2>
+            
+            <div class="timeline max-w-4xl mx-auto">
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="timeline-marker bg-amber-500"></div>
+                    <div class="timeline-content">
+                        <img src="images/ravi1.jpg" alt="Ravi Childhood"
+                            class="mb-3 mx-auto cursor-pointer small-img">
+                        <h3 class="text-2xl font-semibold mb-2 text-amber-800">Childhood in Eraiyur Village</h3>
+                        <p class="text-gray-700 mb-4">A simple beginning in the peaceful village of Eraiyur, where dreams were born under the vast sky.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                    <div class="timeline-marker bg-amber-500"></div>
+                    <div class="timeline-content">
+                        <img src="images/ravi2.jpg" alt="Ravi Childhood"
+                            class="mb-3 mx-auto cursor-pointer small-img">
+                        <h3 class="text-2xl font-semibold mb-2 text-amber-800">School Days</h3>
+                        <p class="text-gray-700 mb-4">Learning, growing, and discovering the world beyond the village boundaries.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="600">
+                    <div class="timeline-marker bg-amber-500"></div>
+                    <div class="timeline-content">
+                        <img src="images/ravi3.png" alt="Ravi Childhood"
+                            class="mb-3 mx-auto cursor-pointer small-img">
+                        <h3 class="text-2xl font-semibold mb-2 text-amber-800">The Freedom Bike</h3>
+                        <p class="text-gray-700 mb-4">Two wheels that opened up endless possibilities and adventures on 14-08-2023..</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="800">
+                    <div class="timeline-marker bg-amber-500"></div>
+                    <div class="timeline-content">
+                        <img src="images/ravi4.png" alt="Ravi Childhood"
+                            class="mb-3 mx-auto cursor-pointer small-img">
+                        <h3 class="text-2xl font-semibold mb-2 text-amber-800">Internship & Growth</h3>
+                        <p class="text-gray-700 mb-4">Stepping into the professional world, building skills and character.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 2 - Priya's Journey -->
+    <section id="chapter2" class="min-h-screen py-20 bg-gradient-to-br from-rose-50 to-pink-100">
+        <div class="container mx-auto px-4">
+            <h2 class="chapter-title text-4xl md:text-5xl text-center mb-16 text-rose-800" data-aos="fade-down">
+                Chapter 2: Priya's Journey
+            </h2>
+            
+            <div class="timeline max-w-4xl mx-auto">
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                    <div class="timeline-marker bg-rose-500 glow-effect"></div>
+                    <div class="timeline-content">
+                        <img src="images/priya1.png" alt="Priya Childhood"
+                            class="mb-3 mx-auto cursor-pointer small-img">
+                        <h3 class="text-2xl font-semibold mb-2 text-rose-800">Childhood Dreams</h3>
+                        <p class="text-gray-700 mb-4">A young girl with big dreams and a heart full of hope for the future.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+                    <div class="timeline-marker bg-rose-500 glow-effect"></div>
+                    <div class="timeline-content">
+                        <img src="images/priya2.png" alt="Priya Childhood"
+                            class="mb-3 mx-auto cursor-pointer small-img">
+                        <h3 class="text-2xl font-semibold mb-2 text-rose-800">Siddha College</h3>
+                        <p class="text-gray-700 mb-4">Pursuing education with determination, building her foundation for the future.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="600">
+                    <div class="timeline-marker bg-rose-500 glow-effect"></div>
+                    <div class="timeline-content">
+                        <img src="images/priya3.png" alt="Priya Childhood"
+                            class="mb-3 mx-auto cursor-pointer small-img">
+                        <h3 class="text-2xl font-semibold mb-2 text-rose-800">Family Responsibilities</h3>
+                        <p class="text-gray-700 mb-4">Balancing personal dreams with family duties, showing strength and resilience.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="800">
+                    <div class="timeline-marker bg-rose-500 glow-effect"></div>
+                    <div class="timeline-content">
+                        <img src="images/priya4.png" alt="Priya Childhood"
+                            class="mb-3 mx-auto cursor-pointer small-img">
+                        <h3 class="text-2xl font-semibold mb-2 text-rose-800">Ready for Love</h3>
+                        <p class="text-gray-700 mb-4">A heart prepared to embrace the beautiful journey that was about to begin.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 3 - Destiny's Connection -->
+    <section id="chapter3" class="min-h-screen flex items-center bg-gradient-to-br from-purple-50 to-indigo-100">
+        <div class="container mx-auto px-4">
+            <h2 class="chapter-title text-4xl md:text-5xl text-center mb-16 text-purple-800" data-aos="fade-down">
+                Chapter 3: Destiny's Connection
+            </h2>
+            
+           <div class="grid md:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
+            <!-- Ravi -->
+            <div class="text-center" data-aos="fade-right" data-aos-delay="200">
+                <div class="w-40 h-40 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-xl overflow-hidden">
+                    <img src="images/span1.jpg" alt="Ravi" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-2xl font-semibold text-purple-800 mb-2">Ravi</h3>
+                <p class="text-gray-700">Waiting for that special connection...</p>
+            </div>
+            
+            <!-- Connection / Phone Call -->
+            <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                <div class="phone-call-animation relative">
+                <div class="w-40 h-40 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-xl overflow-hidden">
+                    <img src="images/span2.jpg" alt="Ravi" class="w-full h-full object-cover">
+                </div>
+                    <div class="connection-lines absolute inset-0"></div>
+                </div>
+                <h3 class="text-xl font-semibold text-purple-800 mb-2">Krithika's and Arun's Introduction</h3>
+                <p class="text-gray-700 italic">"You two should meet..."</p>
+            </div>
+            
+            <!-- Priya -->
+            <div class="text-center" data-aos="fade-left" data-aos-delay="600">
+                <div class="w-40 h-40 bg-gradient-to-br from-pink-400 to-rose-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-xl overflow-hidden">
+                    <img src="images/span3.jpg" alt="Priya" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-2xl font-semibold text-purple-800 mb-2">Priya</h3>
+                <p class="text-gray-700">Open to new possibilities...</p>
+            </div>
+        </div>
+
+            
+            <div class="text-center mt-12" data-aos="zoom-in" data-aos-delay="800">
+                <p class="text-2xl text-purple-800 font-serif italic">
+                    "And everything changed..."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 4 - Growing Love -->
+    <section id="chapter4" class="min-h-screen relative py-20 overflow-hidden">
+        <div class="train-bg absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-purple-900/80"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="chapter-title text-4xl md:text-5xl text-center mb-16 text-white" data-aos="fade-down">
+                Chapter 4: Growing Love
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="chat-container space-y-6">
+                    <div class="chat-bubble left" data-aos="fade-right" data-aos-delay="200">
+                        <p>"Where are you? 🚂"</p>
+                        <span class="timestamp">Priya</span>
+                    </div>
+                    
+                    <div class="chat-bubble right" data-aos="fade-left" data-aos-delay="400">
+                        <p>"On the way... missing you ❤️"</p>
+                        <span class="timestamp">Ravi</span>
+                    </div>
+                    
+                    <div class="chat-bubble left" data-aos="fade-right" data-aos-delay="600">
+                        <p>"Can't wait to see you! 😊"</p>
+                        <span class="timestamp">Priya</span>
+                    </div>
+                    
+                    <div class="chat-bubble right" data-aos="fade-left" data-aos-delay="800">
+                        <p>"Distance means nothing when love is strong 💕"</p>
+                        <span class="timestamp">Ravi</span>
+                    </div>
+                </div>
+                
+            <div class="text-center mt-12" data-aos="zoom-in" data-aos-delay="1000">
+                <div class="relative w-3/4 max-w-xl mx-auto overflow-hidden rounded-lg" style="aspect-ratio: 15/12;">
+                    <!-- Slides Container -->
+                    <div class="flex transition-transform duration-500" id="imageSlider">
+                        <img src="images/image1.png" alt="Priya Childhood" class="flex-shrink-0 w-full h-full object-contain">
+                        <img src="images/image2.png" alt="Priya Childhood 2" class="flex-shrink-0 w-full h-full object-contain">
+                        <img src="images/image3.png" alt="Priya Childhood 3" class="flex-shrink-0 w-full h-full object-contain">
+                    </div>
 
 
-  <script>
-    // Password check
-    document.getElementById("submitPassword").addEventListener("click", function() {
-      const input = document.getElementById("passwordInput").value;
-      if (input === "PriyaRavi") {
-        window.location.href = "index.html";
-      } else {
-        document.getElementById("errorMessage").classList.remove("hidden");
-      }
-    });
+                    <!-- Left/Right Buttons -->
+                    <button id="prevBtn" class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/30 hover:bg-white/60 text-white rounded-full p-2">&larr;</button>
+                    <button id="nextBtn" class="absolute top-1/2 right-2 -translate-y-1/2 bg-white/30 hover:bg-white/60 text-white rounded-full p-2">&rarr;</button>
+                </div>
+                <p class="text-xl text-white font-serif italic mt-3">
+                    Every journey brought us closer together
+                </p>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 5 - Family Acceptance -->
+<section id="chapter5" class="min-h-screen py-20 bg-gradient-to-br from-green-50 to-emerald-100">
+    <div class="container mx-auto px-4">
+        <h2 class="chapter-title text-4xl md:text-5xl text-center mb-16 text-emerald-800" data-aos="fade-down">
+            Chapter 5: Family Acceptance
+        </h2>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="family-silhouettes mb-12" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex justify-center space-x-8 mb-8">
+                    <div class="family-member" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-50 h-30 rounded-full mx-auto mb-2 flex items-center justify-center">
+                            <img src="images/fam1.png" alt="Mom" class="w-64 h-64 rounded-full shadow-lg">
+                        </div>
+                        <p class="text-emerald-700">Mom</p>
+                    </div>
+
+                    <div class="family-member" data-aos="fade-up" data-aos-delay="500">
+                        <div class="w-50 h-30 rounded-full mx-auto mb-2 flex items-center justify-center">
+                            <img src="images/fam2.png" alt="Dad" class="w-64 h-64 rounded-full shadow-lg">
+                        </div>
+                        <p class="text-emerald-700">Dad</p>
+                    </div>
+
+                    <div class="family-member" data-aos="fade-up" data-aos-delay="700">
+                        <div class="w-50 h-30 rounded-full mx-auto mb-2 flex items-center justify-center">
+                            <img src="images/fam3.png" alt="Dad" class="w-64 h-64 rounded-full shadow-lg">
+                        </div>
+                        <p class="text-emerald-700">Family</p>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos="zoom-in" data-aos-delay="900">
+                <p class="text-2xl md:text-3xl text-emerald-800 font-serif italic mb-8">
+                    "With blessings, our bond grew stronger"
+                </p>
+                <div class="text-6xl mb-4">🙏</div>
+                <p class="text-lg text-emerald-700 max-w-2xl mx-auto">
+                    When family accepts your love, it becomes a celebration.
+                    Their blessings became the foundation of our beautiful journey together.
+                </p>
+                <!-- Added image -->
+                <div class="max-w-3xl mx-auto">
+                    <img src="images/fam4.png" alt="Family Blessings" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Chapter 6 - First Trip (Kerala, Varkala) -->
+    <section id="chapter6" class="min-h-screen relative py-20">
+        <div class="wave-bg absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/70 to-blue-900/70"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="chapter-title text-4xl md:text-5xl text-center mb-8 text-white" data-aos="fade-down">
+                Chapter 6: First Trip Together
+            </h2>
+            
+            <p class="text-xl text-center text-white/90 mb-12 max-w-2xl mx-auto font-serif" data-aos="fade-up" data-aos-delay="200">
+                Kerala, Varkala - Our first trip together, creating unforgettable memories by the sea
+            </p>
+            
+            <!-- Swiper Gallery -->
+            <div class="swiper trip-gallery max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="400">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="trip-photo">
+                            <img src="images/varkala2.jpg" alt="Beach sunset" class="w-full h-96 object-cover rounded-lg shadow-xl">
+                            <div class="photo-caption">
+                                <p>Watching the sky together</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="trip-photo">
+                            <img src="images/varkala3.jpg" alt="Beach waves" class="w-full h-96 object-cover rounded-lg shadow-xl">
+                            <div class="photo-caption">
+                                <p>Varkala's beautiful coastline</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="trip-photo">
+                            <img src="images/varkala1.jpg" alt="Temple" class="w-full h-96 object-cover rounded-lg shadow-xl">
+                            <div class="photo-caption">
+                                <p>Nature view point together</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="trip-photo">
+                            <img src="images/varkala4.jpg" alt="Couple silhouette" class="w-full h-96 object-cover rounded-lg shadow-xl">
+                            <div class="photo-caption">
+                                <p>Perfect moments, perfect memories</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Scene - Anniversary -->
+    <section id="finale" class="min-h-screen flex items-center justify-center bg-black relative overflow-hidden">
+        <div class="stars absolute inset-0"></div>
+        
+        <div class="text-center z-10 px-4" data-aos="fade-up" data-aos-duration="2000">
+            <h2 class="romantic-title text-4xl md:text-6xl mb-8 text-transparent bg-gradient-to-r from-gold-400 via-yellow-400 to-gold-400 bg-clip-text animate-pulse">
+                My Forever Gift to You
+            </h2>
+            
+            <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-serif leading-relaxed">
+                Priya, this website is my forever gift to you.<br>
+                Our story is just beginning ❤️
+            </p>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown-container mb-12" data-aos="zoom-in" data-aos-delay="500">
+                <p class="text-lg text-white/80 mb-4">Countdown to 22-09-2025</p>
+                <div id="countdown" class="flex justify-center space-x-4 text-white">
+                    <div class="countdown-item">
+                        <span id="days" class="text-4xl font-bold text-gold-400">000</span>
+                        <p class="text-sm">Days</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="text-4xl font-bold text-gold-400">00</span>
+                        <p class="text-sm">Hours</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="text-4xl font-bold text-gold-400">00</span>
+                        <p class="text-sm">Minutes</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="text-4xl font-bold text-gold-400">00</span>
+                        <p class="text-sm">Seconds</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Easter Egg Button -->
+            <div data-aos="fade-up" data-aos-delay="1000">
+                <button id="easterEgg" class="easter-egg-heart text-4xl hover:scale-125 transition-transform duration-300">
+                    💝
+                </button>
+                <p class="text-sm text-white/60 mt-2">Click the gift for a special surprise</p>
 
 
-    // Auto play if previously playing
-    window.addEventListener("load", () => {
-      if (localStorage.getItem("musicPlaying") === "true") {
-        music.play();
-        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5v14l12-7-12-7z"/>';
-      }
-    });
-  </script>
+            <p class="text-lg text-emerald-700 max-w-2xl mx-auto mb-6">
+                We have a long journey ahead let’s collect our memories, share our love, care, happiness, and even our pain. 
+                Together, every moment will become a beautiful part of our story.
+            </p>
+
+            </div>
+        </div>
+    </section>
+
+<!-- Easter Egg Modal -->
+<div id="loveLetterModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg p-8 max-w-3xl w-full max-h-[80vh] overflow-y-auto love-letter">
+        <div class="text-center mb-6">
+            <h3 class="romantic-title text-3xl text-rose-600 mb-2">Love You ma ..</h3>
+            <div class="w-20 h-1 bg-rose-300 mx-auto"></div>
+        </div>
+        
+        <div class="space-y-4 text-gray-700 font-serif leading-relaxed text-lg">
+            <p>
+                You came into my life at a time I never expected, and just like that, everything changed. 
+                Suddenly, the world felt brighter, laughter felt deeper, and every moment seemed meaningful 
+                because you were there.
+            </p>
+            
+            <p>
+                From the very first smile to the smallest gesture, you have made my life incredibly beautiful. 
+                I never knew love could feel this complete, this pure, until you showed me how it feels to be 
+                truly seen, truly cherished.
+            </p>
+            
+            <p>
+                I want you to know, Priya, that I am fully yours at any cost, at any time. No matter what comes 
+                our way, I will stand by you, hold your hand through every storm, and protect the happiness 
+                we have built together.
+            </p>
+            
+            <p>
+                I will never let you go. Not for a day, not for a moment. You are my home, my comfort, and 
+                the most precious part of my life. Every heartbeat reminds me of you, and every thought 
+                carries your name.
+            </p>
+            
+            <p>
+                Together, we have created memories that I will treasure forever. Every laugh, every 
+                conversation, every quiet moment spent with you has filled my life with joy I never 
+                imagined possible.
+            </p>
+            
+            <p class="text-center font-bold text-rose-600 text-xl">
+                I love you completely, endlessly, and beyond words. ❤️
+            </p>
+            
+            <p class="text-right italic text-lg">
+                Forever and ever ...,<br>
+                Ravi
+            </p>
+        </div>
+        
+        <button id="closeLetter" class="mt-6 bg-rose-500 text-white px-6 py-2 rounded-full hover:bg-rose-600 transition-colors duration-300 w-full">
+            Close Letter
+        </button>
+    </div>
+</div>
+
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
